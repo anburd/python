@@ -12,6 +12,6 @@ print(users_hobby_dic)
 
 
 
-with open('users_hobby.txt', 'w', encoding='utf8') as out:
+with open('/files/users_hobby.txt', 'w', encoding='utf8') as out:
         for key, val in users_hobby_dic.items():
             out.write('{}: {}\n'.format(key, val))
