@@ -30,13 +30,27 @@ def robot():
     step_index = 10
     if areas[4] == 'b2':    
         step_index = 4
-    x = 0
-    o = 0
+    
     no_x=0
     no_o=0
+    
     for i in wins_lst:
-        print(i)
+        x = 0
         for j in range(3):
+            if  areas[i[j]] == '><':
+                x += 1   
+            if x==2: break 
+
+        for j in range(3):
+            if areas[i[j]] != '><' and areas[i[j]] != '<>'!= '><' or '<>':
+                no_x=i[j]
+        if x==2: break    
+
+    if step_index == 10: step_index = no_x      
+
+    for i in wins_lst:
+        o = 0
+        for j in range(3):  
             if areas[i[j]] == '<>':
                 o += 1   
             if o==2: break 
@@ -45,20 +59,7 @@ def robot():
                 no_o=i[j]
         if o==2: break    
 
-    if step_index == 10: step_index = no_o
-
-    for i in wins_lst:
-        print(i)
-        for j in range(3):
-            if areas[i[j]] == '><':
-                x += 1   
-            if x==2: break 
-        for j in range(3):
-            if areas[i[j]] != '><' and areas[i[j]] != '<>'!= '><' or '<>':
-                no_x=i[j]
-        if x==2: break    
-
-    if step_index == 10: step_index = no_x       
+    if step_index == 10: step_index = no_o 
 
 
     freecells=[]
@@ -78,22 +79,15 @@ def check_win(count, winner):
     return win
 
 def check_winner():
-    winner = 0
-   
+    winner = 0   
     for i in wins_lst:
-        # print(areas[i[0]])
-        # print(areas[i[1]])
-        # print(areas[i[2]])
-
         if areas[i[0]] == '><' and areas[i[1]] == '><' and areas[i[2]] == '><':
             winner=1 
         if areas[i[0]] == '<>' and areas[i[1]] == '<>' and areas[i[2]] == '<>':
             winner=2
-
     return winner
 
 printGameArea() 
-
 
 while count <9:
     check=check_win(count, check_winner())
@@ -101,7 +95,6 @@ while count <9:
         break
     player_num = 1
     smb = ('><')
-   
     move()
     printGameArea()
     count +=1
@@ -111,8 +104,7 @@ while count <9:
     if check == True:
         break
     player_num = 2
-    smb = ('<>')
-  
+    smb = ('<>') 
     player2()
     count +=1
     printGameArea()
