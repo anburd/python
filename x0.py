@@ -13,7 +13,7 @@ wins_lst = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7],
 
 def printGameArea():
 
-    os.system('cls' if os.name == 'nt' else 'clear')
+    # os.system('cls' if os.name == 'nt' else 'clear')
     for i in range(0, 9, 3):
         print('----------------')
         print('|', areas[i], '|', areas[i+1], '|', areas[i+2], '|')
@@ -42,7 +42,7 @@ def robot():
             if x==2: break 
 
         for j in range(3):
-            if areas[i[j]] != '><' and areas[i[j]] != '<>'!= '><' or '<>':
+            if areas[i[j]] != '><' and areas[i[j]] != '<>':
                 no_x=i[j]
         if x==2: break    
 
@@ -55,18 +55,22 @@ def robot():
                 o += 1   
             if o==2: break 
         for j in range(3):
-            if areas[i[j]] != '><' and areas[i[j]] != '<>'!= '><' or '<>':
+            if areas[i[j]] != '><' and areas[i[j]] != '<>':
                 no_o=i[j]
         if o==2: break    
 
     if step_index == 10: step_index = no_o 
 
 
-    freecells=[]
-    for i in range(len(areas)):
-        if areas[i] != '><' and areas[i] != '<>':
-            freecells.append(i)
-    if step_index == 10: step_index = random.choices(freecells)
+    # freecells=[]
+    # for i in range(len(areas)):
+    #     if areas[i] != '><' and areas[i] != '<>':
+    #         freecells.append(i)
+    #         print(freecells)
+    # if step_index == 10: step_index = random.choices(freecells)
+    # print(random.choices(freecells))
+    print(step_index)
+    print(areas[step_index] )
     areas[step_index] = smb
 
 # player2=move
