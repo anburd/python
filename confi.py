@@ -7,17 +7,17 @@
 import random
 
 candys=201
-pl2=0
+pl=0
 print('Кто будет вторым игроком?\n выберите цифру:\n компьютер - 1\n человек - 2')
 
-while pl2 not in range(1,3):
-    pl2 = input()
+while pl not in range(1,3):
+    pl = input()
     try:
-        pl2 = int(pl2)
+        pl = int(pl)
     except:
         print("Некорректный ввод. Вы уверены, что ввели число?")
         continue
-if pl2 == 1: ai=True
+if pl == 1: ai=True
 else: ai=False
 
 

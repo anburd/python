@@ -1,27 +1,15 @@
-# Создайте программу для игры в ""Крестики-нолики"".
-
 import os
 import random
 areas = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
 count = 0
-smb=''
-pl=0
+player_num=1
 
 
 
 smb = ('><')
 wins_lst = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], 
 [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-print('Кто будет вторым игроком?\n выберите цифру:\n компьютер - 1\n человек - 2')
-while pl not in range(1,3):
-    pl = input()
-    try:
-        pl = int(pl)
-    except:
-        print("Некорректный ввод. Вы уверены, что ввели число?")
-        continue
-if pl == 1: ai=True
-else: ai=False
+
 
 def printGameArea():
 
@@ -32,12 +20,10 @@ def printGameArea():
     print('----------------')
 
 def move():
-    s = ''
-    step=None
+    step = ''
     print(f'Игрок {player_num}')
-    while s not in areas:
-        s=input('ваш ход: ')
-        step = areas.index(s)
+    while step not in areas:
+        step = input('ваш ход: ')
     return step
 
 def checking(symbol):
@@ -67,6 +53,11 @@ def robot():
 
     return step
 
+print(robot())
+
+# player2=move
+player2=robot
+
 def check_win(count, winner):
     win = False
     if count==9 or winner != 0:
@@ -84,38 +75,29 @@ def check_winner():
 
 printGameArea() 
 
-check = False
 while count <9:
+    check=check_win(count, check_winner())
     if check == True:
-            break
-    for player_num in (1,2):
-        check=check_win(count, check_winner())
-       
-        if check == True:
-            break
+        break
+    player_num = 1
+    smb = ('><')
+    areas[areas.index(move())] = smb
+    printGameArea()
+    count +=1
 
-        if player_num==1: smb='><'
-        else: smb='<>'
-        if ai and player_num==2: 
-            areas[robot()] = smb
-        else:
-            areas[move()] = smb
-        printGameArea()
-        count +=1
+   
+    check=check_win(count, check_winner())
+    if check == True:
+        break
+    player_num = 2
+    smb = ('<>') 
+    areas[player2()] = smb    
+    printGameArea()
+    count +=1
+
   
+
 print('game over')
 
 
 print(f'Победил игрок №{check_winner()}')
-print('game over')
-
-res=check_winner()
-print(check_winner())
-if res==0:
-    print('Победила дружба! Ничья')
-elif res==1:
-    print('Победил первый игрок')
-elif res==2 and ai:
-    print('Победил компьютер.')
-else:
-    print('Победил второй игрок')
