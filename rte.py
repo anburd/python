@@ -16,41 +16,27 @@ def rle_encoding(incom_str):
     return encod_str
 
 def rle_decoding(text):
-    decod_str = ""
-    num=''
+    decod_str = ''
+    num=0
+    digit =''
     for i in range(len(text)):
-        if str(text[i]).isdigit():            
-            if str(text[i+1]).isdigit():
-                num=num+text[i]
-                print(num)
-            # else:
-            #     for j in range(int(num)):
-            #         decod_str += text[i + 1]
-    
-    print(decod_str)
-
+        if str(text[i]).isdigit():
+            digit  = digit  + str(text[i])
+        else: 
+            if digit != '':
+                for j in range(int(digit)):
+                    decod_str += text[i]                  
+                print(digit)
+                digit =''
+        
     return decod_str
 
-decoded_string='eeerrrtwwwqquuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuredrrrrrrrrrrrrrrr'
+my_string='uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuredrrrrrrrrrrrrrrreeerrrtwwwq'
 
-print(rle_encoding(decoded_string))
 
-encoded_string=rle_encoding(decoded_string)
+print(my_string)
+coded_string=rle_encoding(my_string)
+print(coded_string)
 
-rle_decoding(encoded_string)
+print(rle_decoding(coded_string))
 
-a = input()
-num_list = []
- 
-num = ''
-for char in a:
-    if char.isdigit():
-        num = num + char
-    else:
-        if num != '':
-            num_list.append(int(num))
-            num = ''
-if num != '':
-    num_list.append(int(num))
- 
-print(num_list)
