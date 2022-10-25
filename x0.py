@@ -40,6 +40,9 @@ def checking(symbol):
     return result
              
 def robot():
+    if areas[4] == 'b2':    
+        step = 4
+        return step
     for symbol in ('><', '<>'):
         step=checking(symbol)
         if step!=None: 
