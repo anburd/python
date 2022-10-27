@@ -9,6 +9,7 @@ print('Первый игрок ходит первым, вторым игрок�
 
 # список адресов игрового простраства
 areas = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
+
 # задаем переменные
 count = 0
 smb = ''
@@ -37,13 +38,27 @@ else:
 
 def printGameArea():
     """
-    Функция выводит на экран игровое поле
+    Функция выводит на экран игровое поле1
+
     """
+    not_areas = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
+    cor=('a','','','b','','', 'c','','')    
     os.system('cls' if os.name == 'nt' else 'clear')
+    print('   ', '1', ' ', '2', ' ', '3', '   ')
     for i in range(0, 9, 3):
-        print('-' * 16)
-        print('|', areas[i], '|', areas[i+1], '|', areas[i+2], '|')
-    print('-' * 16)
+
+        print(' ','-' * 13)
+        if areas[i] not in not_areas:
+            a1=areas[i]
+        else: a1=' '
+        if areas[i+1] not in not_areas:
+            a2=areas[i+1]
+        else: a2=' '
+        if areas[i+2] not in not_areas:
+            a3=areas[i+2]
+        else: a3=' '
+        print(cor[i], '|', a1, '|', a2, '|', a3, '|')
+    print(' ','-' * 13)
 
 
 def move():
@@ -55,7 +70,8 @@ def move():
     print(f'Игрок {player_num}')
     while s not in areas:
         s = input('ваш ход: ')
-        step = areas.index(s)
+    
+    step = areas.index(s)
     return step
 
 
@@ -71,7 +87,7 @@ def checking(symbol):
         for j in range(3):
             if areas[i[j]] == symbol:
                 count += 1
-            if areas[i[j]] != '<>' and areas[i[j]] != '><':
+            if areas[i[j]] != 'O' and areas[i[j]] != 'X':
                 free.append(i[j])
         if count == 2 and free:
             result = free[0]
@@ -90,12 +106,12 @@ def robot():
     if areas[4] == 'b2':
         step = 4
         return step
-    for symbol in ('><', '<>'):
+    for symbol in ('X', 'O'):
         step = checking(symbol)
         if step != None:
             return step
     freecells = [i for i in range(
-        len(areas)) if areas[i] != '><' and areas[i] != '<>']
+        len(areas)) if areas[i] != 'X' and areas[i] != 'O']
     step = int(str(random.choices(freecells))[1])
     return step
 
@@ -116,9 +132,9 @@ def check_winner():
     """
     winner = 0
     for i in wins_lst:
-        if areas[i[0]] == '><' and areas[i[1]] == '><' and areas[i[2]] == '><':
+        if areas[i[0]] == 'X' and areas[i[1]] == 'X' and areas[i[2]] == 'X':
             winner = 1
-        if areas[i[0]] == '<>' and areas[i[1]] == '<>' and areas[i[2]] == '<>':
+        if areas[i[0]] == 'O' and areas[i[1]] == 'O' and areas[i[2]] == 'O':
             winner = 2
     return winner
 
@@ -135,9 +151,9 @@ while count < 9:
         if check == True:
             break
         if player_num == 1:
-            smb = '><'
+            smb = 'X'
         else:
-            smb = '<>'
+            smb = 'O'
         if ai and player_num == 2:
             areas[robot()] = smb
         else:
