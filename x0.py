@@ -55,7 +55,7 @@ def move():
     print(f'Игрок {player_num}')
     while s not in areas:
         s = input('ваш ход: ')
-        step = areas.index(s)
+    step = areas.index(s)
     return step
 
 
