@@ -1,11 +1,12 @@
-def choise_operation():
-    print('Телефонный справочник.\n')
-    operation = int(input('Выберите операцию: \n \
+def show_menu():
+    print('\nТелефонный справочник.\n'
+        'Выберите операцию: \n \
         1 - Внести новый контакт. \n \
         2 - Найти контакт. \n \
-        3 - Вывести весь список контактов.\n \
-        Ваш выбор: '))
-    return operation
+        3 - Вывести весь список контактов. \n \
+        0 - Выход' )
+    operation = input('Ваш выбор:')
+    return  operation
 
 
 def print_data(data):
