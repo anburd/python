@@ -3,6 +3,10 @@ import export_date
 import import_date
 import search_date
 
+def print_data(data):
+    print(*(' '.join(x) for x in data), sep='\n')
+
+
 
 def run():
     while True:
@@ -17,11 +21,16 @@ def run():
                 word = input("Введите данные для поиска: ")
                 data = export_date.read_contact()
                 output = search_date.search_contact(word, data)
-                user_interface.print_data(output)
+                print_data(output)
             case '3':
-                print('\nВесь справочник:')
-                output = export_date.read_contact()
-                user_interface.print_data(output)
+                format = user_interface.choice_format()
+                if format == '1':
+                    output = export_date.read_contact()
+                    print_data(output)
+                # elif format == '2':
+                    
+                # elif format == '3':                  
+
             case '0':
                 exit()
 

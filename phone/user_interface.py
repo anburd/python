@@ -9,5 +9,10 @@ def show_menu():
     return  operation
 
 
-def print_data(data):
-    print(*(' '.join(x) for x in data), sep='\n')
+def choice_format():
+    print('\nВывести справочник: \n \
+        1 - на экран. \n \
+        2 - в формат HTML. \n \
+        3 - в формат . ' )
+    format = input('Ваш выбор:')
+    return  format
