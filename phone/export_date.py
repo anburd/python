@@ -5,4 +5,4 @@ def read_contact():
         for line in file:
             data.append(line.strip().split(';'))
 
-        return (data)
+        return data

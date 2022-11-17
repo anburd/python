@@ -1,14 +1,14 @@
 def write_contact():
-    entry = []
+    element = []
     surname = input('Введите фамилию: ')
-    entry.append(surname)
+    element.append(surname)
     name = input('Введите имя: ')
-    entry.append(name)
+    element.append(name)
     phone = input('Введите телефон: ')
-    entry.append(phone)
+    element.append(phone)
     description = input('Введите описание контакта: ')
-    entry.append(description)
+    element.append(description)
 
     with open('phones.csv', 'a', encoding='utf-8') as file:
         file.write(
-            f'{entry[0]};{entry[1]};{entry[2]};{entry[3]}\n')
+            f'{element[0]};{element[1]};{element[2]};{element[3]}\n')
