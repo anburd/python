@@ -3,6 +3,9 @@ import export_date
 import import_date
 import search_date
 import html_creater
+import xml_creater
+
+
 def print_data(data):
     print(*(' '.join(x) for x in data), sep='\n')
 
@@ -28,7 +31,8 @@ def run():
                     print_data(output)
                 elif format == '2':
                     html_creater.create(output)
-                # elif format == '3':                  
+                elif format == '3':     
+                    xml_creater.create(output)             
 
             case '0':
                 exit()
